@@ -15,16 +15,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    //   case GET_ALL_ITEMS:
-    //     axios.get('./http://localhost:3000/Home')
-    //     return{...state,product: [...state.product.map((el)=> el)] }
-
     case ADD_NEW_ITEM:
       console.log(action.payload);
       axios
         .post('http://localhost:4000/api/products', action.payload, {
           headers: {
-            'Content-Type': 'text/plain',
+            'Content-Type': 'application/json',
           },
         })
         .then((res) => {
@@ -32,6 +28,17 @@ export default function(state = initialState, action) {
           return { ...state, product: res.data.product };
         })
         .catch((err) => console.log(err));
+      break;
+    case GET_ALL_ITEMS:
+      axios
+        .get('http://localhost:4000/api/products')
+        .then((res) => {
+          console.log('list', res.data);
+
+          return { ...state, product: res.data };
+        })
+        .catch((err) => console.log(err));
+      break;
 
     //   case GET_ONE_ITEM:
     //     axios.get('http://localhost:3000/Home/id', action.payload)
