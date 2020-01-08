@@ -1,9 +1,9 @@
 // import React from "react";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { createUser } from "../actions/action";
-import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { createUser } from '../actions/action';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function SigneUp() {
   let history = useHistory();
@@ -14,57 +14,57 @@ function SigneUp() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
+        reader.onerror = (error) => reject(error);
       });
     }
     var file = document.querySelector('input[type="file"]').files[0];
-    getBase64(file).then(data => "#ImageBase46".val(data));
+    getBase64(file).then((data) => '#ImageBase46'.val(data));
   }
 
-  const [name, setName] = useState("");
-  const handlerName = e => {
+  const [name, setName] = useState('');
+  const handlerName = (e) => {
     setName(e.target.value);
   };
-  const [lname, setLname] = useState("");
-  const handlerLname = e => {
+  const [lname, setLname] = useState('');
+  const handlerLname = (e) => {
     setLname(e.target.value);
   };
 
-  const [email, setEmail] = useState("");
-  const handlerEmail = e => {
+  const [email, setEmail] = useState('');
+  const handlerEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const [phone, setPhone] = useState("");
-  const handlerPhone = e => {
+  const [phone, setPhone] = useState('');
+  const handlerPhone = (e) => {
     setPhone(e.target.value);
   };
 
-  const [psw, setPsw] = useState("");
-  const handlerPsw = e => {
+  const [psw, setPsw] = useState('');
+  const handlerPsw = (e) => {
     setPsw(e.target.value);
   };
 
-  const [sex, setSex] = useState("");
-  const handlerSex = e => {
+  const [sex, setSex] = useState('');
+  const handlerSex = (e) => {
     setSex(e.target.value);
   };
 
-  const [date, setDate] = useState("");
-  const handlerDate = e => {
+  const [date, setDate] = useState('');
+  const handlerDate = (e) => {
     setDate(e.target.value);
   };
 
-  const [adress, setAdress] = useState("");
-  const handlerAdress = e => {
+  const [adress, setAdress] = useState('');
+  const handlerAdress = (e) => {
     setAdress(e.target.value);
   };
-  const [img, setImg] = useState("");
-  const handlerImg = e => {
+  const [img, setImg] = useState('');
+  const handlerImg = (e) => {
     setImg(ViewImage(e.target.value));
   };
   const submit = () => {
-    history.push("/SpaceUser", { state: add });
+    history.push('/SpaceUser', { state: add });
   };
   // console.log(adress, name, lname, sex, psw, date, psw);
   return (
@@ -78,15 +78,14 @@ function SigneUp() {
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <Link to={"/"}>
+              <Link to={'/'}>
                 <a class="nav-link" href="#">
                   Home <span class="sr-only">(current)</span>
                 </a>
@@ -211,7 +210,7 @@ function SigneUp() {
           <button
             onClick={() =>
               submit(
-                add = {
+                (add = {
                   name: name,
                   lname: lname,
                   email: email,
@@ -219,13 +218,12 @@ function SigneUp() {
                   psw: psw,
                   sex: sex,
                   date: date,
-                  adress: adress
-                }
+                  adress: adress,
+                }),
               )
             }
             type="submit"
-            class="btn btn-primary"
-          >
+            class="btn btn-primary">
             Submit
           </button>
         </form>
@@ -234,8 +232,8 @@ function SigneUp() {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  submit: add => dispatch(createUser(add))
+const mapDispatchToProps = (dispatch) => ({
+  submit: (add) => dispatch(createUser(add)),
 });
 
 export default connect(null, mapDispatchToProps)(SigneUp);

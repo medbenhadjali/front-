@@ -1,19 +1,19 @@
 // import React from "react";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { createUser } from "../actions/action";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { createUser } from '../actions/action';
+import { connect } from 'react-redux';
 
- function SigneIn() {
-  const [login, setLogin] = useState("");
-  const handlerLogin = e => {
+function SigneIn() {
+  const [login, setLogin] = useState('');
+  const handlerLogin = (e) => {
     setLogin(e.target.value);
   };
-  const [psw, setPsw] = useState("");
-  const handlerPsw = e => {
+  const [psw, setPsw] = useState('');
+  const handlerPsw = (e) => {
     setPsw(e.target.value);
   };
- 
+
   console.log(login, psw);
   return (
     <div>
@@ -26,15 +26,14 @@ import { connect } from "react-redux";
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <Link to={"/"}>
+              <Link to={'/'}>
                 <a class="nav-link" href="#">
                   Home <span class="sr-only">(current)</span>
                 </a>
@@ -74,13 +73,15 @@ import { connect } from "react-redux";
           </div>
           <div class="form-group form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" name="remember" />{" "}
+              <input class="form-check-input" type="checkbox" name="remember" />{' '}
               Remember me
             </label>
           </div>
-          <span><a href="#">Mot de passe oublie ?</a></span>
-          <br/>
-          <Link to={"/SpaceUser"}>
+          <span>
+            <a href="#">Mot de passe oublie ?</a>
+          </span>
+          <br />
+          <Link to={'/SpaceUser'}>
             <button onClick="test" type="submit" class="btn btn-primary">
               Submit
             </button>
@@ -91,9 +92,7 @@ import { connect } from "react-redux";
   );
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   // submit: add => dispatch(createUser(add))
-  
-
 });
 export default connect(null, mapDispatchToProps)(SigneIn);

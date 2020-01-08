@@ -1,9 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function SpaceAdmin() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div></div>;
 }

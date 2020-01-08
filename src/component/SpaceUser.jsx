@@ -1,80 +1,76 @@
 // import React from 'react';
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { addNewItem } from "../actions/action";
-import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { addNewItem } from '../actions/action';
+import { connect } from 'react-redux';
 
-
- function SpaceUser() {
-   let add ={}
+function SpaceUser({ submit }) {
+  let add = {};
   const [modal, setModal] = useState(false);
-  const [namep, setNamep] = useState("");
-  const [img, setImg] = useState("");
-  const [date, setDate] = useState("");
-  const [categorie, setCategorie] = useState("");
-  const [desc, setDesc] = useState("");
+  const [namep, setNamep] = useState('');
+  const [img, setImg] = useState('');
+  const [date, setDate] = useState('');
+  const [categorie, setCategorie] = useState('');
+  const [desc, setDesc] = useState('');
   const [price, setPrice] = useState(0);
-  
-  function ViewImage(file){
+
+  function ViewImage(file) {
     function getBase64(file) {
-     return new Promise((resolve, reject) => {
-       const reader = new FileReader();
-       reader.readAsDataURL(file);
-       reader.onload = () => resolve(reader.result);
-       reader.onerror = error => reject(error);
-     });
-   }
-   var file = document.querySelector('input[type="file"]').files[0];
-   getBase64(file).then(data =>("#ImageBase46").val(data));
-   }
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    }
+    var file = document.querySelector('input[type="file"]').files[0];
+    getBase64(file).then((data) => '#ImageBase46'.val(data));
+  }
 
   // console.log(namep, img, date, categorie, desc);
-  const handelname = e => {
+  const handelname = (e) => {
     setNamep(e.target.value);
   };
 
-  const handelimg = e => {
+  const handelimg = (e) => {
     setImg(e.target.value);
   };
 
-  const handeldate = e => {
+  const handeldate = (e) => {
     setDate(e.target.value);
   };
 
-  const handelcategorie = e => {
+  const handelcategorie = (e) => {
     setCategorie(e.target.value);
   };
 
-  const handeldesc = e => {
+  const handeldesc = (e) => {
     setDesc(e.target.value);
   };
 
-  const handelPrice = e => {
+  const handelPrice = (e) => {
     setPrice(e.target.value);
   };
 
-  const [imgp , setImgp] = useState("");
-  const handelImg = e => {
+  const [imgp, setImgp] = useState('');
+  const handelImg = (e) => {
     setImgp(ViewImage(e.target.value));
   };
 
   const toggle = () => setModal(!modal);
 
-  const submit = (add) =>
-  {
-    add ={
+  const onSubmit = () => {
+    const data = {
       namep,
-        img,
+      img,
       date,
       desc,
       categorie,
-      price
-      }
-      console.log('add',add)
-
-
-  }
+      price,
+    };
+    submit(data);
+  };
 
   return (
     <div>
@@ -87,15 +83,14 @@ import { connect } from "react-redux";
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <Link to={"/"}>
+              <Link to={'/'}>
                 <a class="nav-link" href="#">
                   Home <span class="sr-only">(current)</span>
                 </a>
@@ -186,9 +181,9 @@ import { connect } from "react-redux";
             </div>
           </form>
           <ModalFooter>
-            <Button onClick={submit} color="primary" onClick={toggle}>
+            <Button onClick={onSubmit} color="primary">
               ADD
-            </Button>{" "}
+            </Button>{' '}
             <Button color="secondary" onClick={toggle}>
               Cancel
             </Button>
@@ -199,10 +194,7 @@ import { connect } from "react-redux";
   );
 }
 
-
-const mapDispatchToProps = dispatch => ({
-  submit: add => dispatch(addNewItem(add))
-  
-
+const mapDispatchToProps = (dispatch) => ({
+  submit: (payload) => dispatch(addNewItem(payload)),
 });
 export default connect(null, mapDispatchToProps)(SpaceUser);
